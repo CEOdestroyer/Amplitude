@@ -4,17 +4,13 @@ function Spot(i, j) {
     this.i = i;
     this.j = j;
   
-    // f, g, and h values for A*
-    this.f = 0;
-    this.g = 0;
-    this.h = 0;
-  
     // Neighbors
     this.neighbors = [];
   
     // Where did I come from?
     this.previous = undefined;
-  
+
+    this.searched = false;
     // Am I a wall?
     this.wall = false;
     if (random(1) < 0) {
@@ -33,7 +29,9 @@ function Spot(i, j) {
     )) {
     this.wall = true
     }
-
+    if (i==2 && j==13) {
+      this.wall = true;
+    }
     if (i==3  && (
       j==1 || j==6 ||
       j==7 || j==10 || j==11 || j==12 || j==13 
@@ -53,25 +51,26 @@ function Spot(i, j) {
     }
 
     if (i==6  && (
-      j==0 ||j==1  || j==4 || j==5 || j==9 || j==10 || j>12
+      j==0 ||j==1 || j==2 || j==4 || j==5 || j==9 || j==10 || j>12
      )) {
      this.wall = true
      }
+
      if (i==7  && (
-      j==2|| j==5 || j==6  || j==10 || j==17
+      j==2 || j==3||j==5 || j==6  || j==10 || j==17
      )) {
      this.wall = true
      }
 
 
     if (i==8  && (
-    j==3 || j==11 || j==12 || j==16
+     j==3 || j==4|| j==11 || j==12 || j==16
     )) {
     this.wall = true
     }
 
     if (i==9  && (
-      j ==0 || j== 1 || j==2 ||j==4 || j==6 || j==7|| j==13
+      j ==0 || j== 1 || j==2 ||j==4  || j==6 || j==7|| j==13
       )) {
       this.wall = true
     }

@@ -1,18 +1,3 @@
-// Function to delete element from the array
-function removeFromArray(arr, elt) {
-    for (var i = arr.length - 1; i >= 0; i--) {
-      if (arr[i] == elt) {
-        arr.splice(i, 1);
-      }
-    }
-  }
-  
-  // An educated guess of how far it is between two points
-  function heuristic(a, b) {
-    var d = dist(a.i, a.j, b.i, b.j);
-    return d;
-  }
-  
   // How many columns and rows?
   var cols = 18;
   var rows = 18;
@@ -20,10 +5,7 @@ function removeFromArray(arr, elt) {
   // This will be the 2D array
   var grid = new Array(cols);
   
-  // Open and closed set
-  var openSet = [];
-  var closedSet = [];
-  
+  var path = []
   // Start and end
   var start;
   var end;
@@ -32,10 +14,7 @@ function removeFromArray(arr, elt) {
   var w, h;
   
   // The road taken
-  var path = [];
   let img;
-  var button;
-  var button2;
 
   let easing = 0.05;
  
@@ -43,15 +22,11 @@ function removeFromArray(arr, elt) {
     img = loadImage('assets/foto_pronto.jpg');
   }
 
-
-
   function setup() {
     //screen
 
     createCanvas(500, 500)
-    button = createButton("teste")
-    button.mousePressed(reset)
-    console.log('A*');
+    console.log('Amplitude');
   
     // Grid cell size
     w = width / cols;
@@ -75,31 +50,15 @@ function removeFromArray(arr, elt) {
       }
     }
     start = grid[0][0];
-    end = grid[1][9];
+    end = grid[15][11];
     start.wall = false;
-    
-    // openSet starts with beginning only
-    openSet.push(start);
-  }
-  
-  function reset() {
-    console.log(`entra`)
-    // Start and end
-    start = grid[0][0];
-    end = grid[1][10];
-    start.wall = false;
-    
-    // openSet starts with beginning only
-    openSet.push(start);
-    
   }
 
   function draw() {
     // Am I still searching?
-    new AStart(openSet, closedSet, 1);
+    new Amplitude();
     // Draw current state of everything
     
-    // tint(255, 127); // Display at half opacity
     // Drawing path as continuous line
     noFill(); // remove the color 
     //line color
